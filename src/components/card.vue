@@ -7,20 +7,19 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class Card extends Vue {
-  @Prop({ default: '1' })
+  @Prop({ default: "1" })
   text: string;
 
-  onShow() {
-  }
+  onShow() {}
 
-  onHide() {
-  }
+  onHide() {}
 
-  mounted() { // vue hook
+  mounted() {
+    // vue hook
   }
 }
 </script>
