@@ -10,23 +10,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Emit, Vue } from "vue-property-decorator";
 // Use Vuex
-import store from './store'
+import store from "./store";
 
-export default {
-  computed: {
-    count () {
-      return store.state.count
-    }
-  },
-  methods: {
-    increment () {
-      store.commit('increment')
-    },
-    decrement () {
-      store.commit('decrement')
-    }
+@Component
+export default class Counter extends Vue {
+  // computed
+  get count() {
+    return store.state.count;
+  }
+
+  increment() {
+    store.commit("increment");
+  }
+
+  decrement() {
+    store.commit("decrement");
   }
 }
 </script>

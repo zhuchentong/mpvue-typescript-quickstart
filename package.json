@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "mpvue": "^1.0.11",
+    "vue": "^2.5.17",
+    "vue-property-decorator": "^7.0.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -49,6 +51,7 @@
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
     "shelljs": "^0.8.1",
+    "tencent-wx-app": "^1.1.201712221707",
     "ts-loader": "3",
     "typescript": "^3.0.3",
     "uglifyjs-webpack-plugin": "^1.2.5",

@@ -1,12 +1,19 @@
-<script>
-export default {
-  created () {
-    // 调用API从本地缓存中获取数据
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
 
-    console.log('app created and cache logs by setStorageSync')
+@Component({
+  mpType: "app"
+} as any)
+export default class App extends Vue {
+  onLaunch() {}
+
+  created() {
+    // 调用API从本地缓存中获取数据
+    // const logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
+
+    console.log("app created and cache logs by setStorageSync");
   }
 }
 </script>

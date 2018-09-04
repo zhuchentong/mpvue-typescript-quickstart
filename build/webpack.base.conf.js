@@ -8,22 +8,22 @@ var glob = require('glob')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var relative = require('relative')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-function getEntry (rootSrc) {
+function getEntry(rootSrc) {
   var map = {};
-  glob.sync(rootSrc + '/pages/**/main.js')
-  .forEach(file => {
-    var key = relative(rootSrc, file).replace('.js', '');
-    map[key] = file;
-  })
-   return map;
+  glob.sync(rootSrc + '/pages/**/main.ts')
+    .forEach(file => {
+      var key = relative(rootSrc, file).replace('.ts', '');
+      map[key] = file;
+    })
+  return map;
 }
 
-const appEntry = { app: resolve('./src/main.js') }
-const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.js')
+const appEntry = { app: resolve('./src/main.ts') }
+const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.ts')
 const entry = Object.assign({}, appEntry, pagesEntry)
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
       'vue': 'mpvue',
       '@': resolve('src')
@@ -55,6 +55,25 @@ module.exports = {
         test: /\.vue$/,
         loader: 'mpvue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+          {
+            loader: 'mpvue-loader',
+            options: {
+              checkMPEntry: true
+            }
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/]
+            }
+          }
+        ]
       },
       {
         test: /\.js$/,
@@ -101,8 +120,8 @@ module.exports = {
       from: '**/*.json',
       to: ''
     }], {
-      context: 'src/'
-    }),
+        context: 'src/'
+      }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),

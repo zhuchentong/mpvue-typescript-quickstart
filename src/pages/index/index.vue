@@ -22,39 +22,41 @@
   </div>
 </template>
 
-<script>
-import card from '@/components/card'
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import Card from '@/components/card.vue' // mpvue目前只支持的单文件组件
 
-export default {
-  data () {
-    return {
-      motto: 'Hello World',
-      userInfo: {}
-    }
-  },
-
+@Component({
   components: {
-    card
-  },
+    Card
+  }
+})
+export default class Index extends Vue {
+  private motto = 'Hello World'
+  private userInfo = {}
 
-  methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
-    },
-    getUserInfo () {
-      // 调用登录接口
-    },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
-    }
-  },
+  bindViewTap() {
+    const url = '../logs/main'
+    wx.navigateTo({ url })
+  }
 
-  created () {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+  getUserInfo() {
+    wx.login({
+      success: () => {
+        wx.getUserInfo({
+          success: (res) => {
+            this.userInfo = res.userInfo
+          }
+        })
+      }
+    })
+  }
+
+  clickHandle(msg, ev) {
+    console.log('clickHandle:', msg, ev)
   }
 }
+
 </script>
 
 <style scoped>
