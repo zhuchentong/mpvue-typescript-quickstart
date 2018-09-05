@@ -1,8 +1,4 @@
 {
-  "pages": [
-    "pages/index/main",
-    "pages/counter/main"
-  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
