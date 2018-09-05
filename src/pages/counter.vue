@@ -6,14 +6,14 @@
       <button @click="decrement">-</button>
     </p>
 
-    <a href="/pages/index/main" class="home">去往首页</a>
+    <a href="/pages/index" class="home">去往首页</a>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
 // Use Vuex
-import store from "./store";
+import store from "@/store";
 
 @Component
 export default class Counter extends Vue {

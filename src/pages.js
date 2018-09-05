@@ -1,11 +1,11 @@
 module.exports = [
   {
-    path: 'pages/index/index.vue',
+    path: 'pages/index.vue',
     config: {
       navigationBarTitleText: '主页'
     }
   },
   {
-    path: 'pages/counter/index.vue',
+    path: 'pages/counter.vue',
   }
 ]
