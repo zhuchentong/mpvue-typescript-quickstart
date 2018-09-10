@@ -10,7 +10,7 @@
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
 	"appid": "touristappid",
-	"projectname": "mpvue-test-03",
+	"projectname": "mpvue-typescript-weapp",
 	"condition": {
 		"search": {
 			"current": -1,
