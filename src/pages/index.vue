@@ -1,6 +1,7 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
     <i-button type="primary">这是一个按钮</i-button>
+
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">
@@ -23,8 +24,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import Card from '@/components/card.vue' // mpvue目前只支持的单文件组件
+import { Component, Vue } from "vue-property-decorator";
+import Card from "@/components/card.vue"; // mpvue目前只支持的单文件组件
 
 @Component({
   components: {
@@ -32,31 +33,34 @@ import Card from '@/components/card.vue' // mpvue目前只支持的单文件组�
   }
 })
 export default class Index extends Vue {
-  private motto = 'Hello World'
-  private userInfo = {}
+  private motto = "Hello World";
+  private userInfo = {};
 
   bindViewTap() {
-    const url = '/pages/counter'
-    wx.navigateTo({ url })
+    // router.push('/pages/news/detail') // 字符串
+    // router.push({ path: '/pages/news/detail' })// 对象
+    // router.push({ path: '/pages/news/detail', query: { id: 1 } })// 带查询参数，变成 /pages/news/detail?id=1
+    // router.push({ path: '/pages/news/list', isTab: true })// 切换至 tabBar 页面
+    // router.push({ path: '/pages/news/list', reLaunch: true })// 重启至某页面，无需指定是否为 tabBar 页面，但 tabBar 页面无法携带参数
+    this.$router.push("/page/counter");
   }
 
   getUserInfo() {
     wx.login({
       success: () => {
         wx.getUserInfo({
-          success: (res) => {
-            this.userInfo = res.userInfo
+          success: res => {
+            this.userInfo = res.userInfo;
           }
-        })
+        });
       }
-    })
+    });
   }
 
   clickHandle(msg, ev) {
-    console.log('clickHandle:', msg, ev)
+    console.log("clickHandle:", msg, ev);
   }
 }
-
 </script>
 
 <style scoped>

@@ -1,8 +1,13 @@
 // main.ts
-import { Component, Emit, Inject, Model, Prop, Provide, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
+import MpvueRouterPatch from 'mpvue-router-patch'
+import { VueConstructor } from "vue";
+
 import App from './App.vue'
 
-import { VueConstructor } from "vue";
+
+
+Vue.use(MpvueRouterPatch)
 
 interface IMpVue extends VueConstructor {
   mpType: string

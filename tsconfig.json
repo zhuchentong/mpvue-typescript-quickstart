@@ -29,7 +29,7 @@
   },
   "include": [
     "./src/**/*",
-    "./typings/*.d.ts"
+    "./typings/**/*.d.ts"
   ],
   "exclude": [
     "node_modules"

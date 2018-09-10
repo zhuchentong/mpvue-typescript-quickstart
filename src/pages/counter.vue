@@ -6,7 +6,7 @@
       <button @click="decrement">-</button>
     </p>
 
-    <a href="/pages/index" class="home">去往首页</a>
+    <i-button type="primary" class="home" @click="onClick">去往首页</i-button>
   </div>
 </template>
 
@@ -28,6 +28,9 @@ export default class Counter extends Vue {
 
   decrement() {
     store.commit("decrement");
+  }
+  onClick() {
+    this.$router.push("/pages/index");
   }
 }
 </script>

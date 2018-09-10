@@ -12,7 +12,7 @@ function resolve(dir) {
 }
 
 const entry = MpvueEntry.getEntry({
-  template: 'src/entry.ts',
+  template: 'src/entry.js',
   main: 'src/main.ts',
   pages: 'src/pages.js',
   entry: 'node_modules/mpvue-entry/dist'
