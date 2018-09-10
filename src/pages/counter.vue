@@ -1,10 +1,10 @@
 <template>
-  <div class="counter-warp">
-    <p>Vuex counter：{{ count }}</p>
-    <p>
-      <button @click="increment">+</button>
-      <button @click="decrement">-</button>
-    </p>
+  <div class="counter">
+    <div>Vuex counter：{{ count }}</div>
+    <div>
+      <i-button @click="increment">+</i-button>
+      <i-button @click="decrement">-</i-button>
+    </div>
 
     <i-button type="primary" class="home" @click="onClick">去往首页</i-button>
   </div>
@@ -12,39 +12,37 @@
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-// Use Vuex
-import store from "@/store";
+import { State, Mutation } from "vuex-class";
 
 @Component
 export default class Counter extends Vue {
-  // computed
-  get count() {
-    return store.state.count;
-  }
+  @State private count;
+  @State private userInfo;
+  @Mutation private increment;
 
-  increment() {
-    store.commit("increment");
-  }
+  @Mutation private decrement;
 
-  decrement() {
-    store.commit("decrement");
-  }
+  @Mutation private updateUserInfo;
+
   onClick() {
-    this.$router.push("/pages/index");
+    this.updateUserInfo(
+      Object.assign({}, this.userInfo, {
+        nickName: this.userInfo.nickName + 1
+      })
+    );
+
+    this.$router.push({
+      path: "/pages/page1",
+      isTab: true
+    });
   }
 }
 </script>
 
-<style>
-.counter-warp {
-  text-align: center;
-  margin-top: 100px;
-}
-.home {
-  display: inline-block;
-  margin: 100px auto;
-  padding: 5px 10px;
-  color: blue;
-  border: 1px solid blue;
+<style lang="less" scoped>
+.counter {
+  & > div {
+    margin-bottom: 30px;
+  }
 }
 </style>

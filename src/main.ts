@@ -5,8 +5,6 @@ import { VueConstructor } from "vue";
 
 import App from './App.vue'
 
-
-
 Vue.use(MpvueRouterPatch)
 
 interface IMpVue extends VueConstructor {
